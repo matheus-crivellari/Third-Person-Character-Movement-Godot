@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://df5yufqc4yweh"]
+
+[ext_resource type="Script" uid="uid://dj4gq2dnknj3m" path="res://character_body_3d.gd" id="1_iwpo4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0xxsn"]
+radius = 0.4
+height = 1.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_iwpo4"]
+size = Vector3(0.1, 0.1, 0.25)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iwpo4"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fb3t6"]
+albedo_color = Color(0.122252, 0.122252, 0.122252, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vd578"]
+material = SubResource("StandardMaterial3D_fb3t6")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fkkic"]
+radius = 0.4
+height = 1.7
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_iwpo4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_0xxsn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.311419, -0.471209)
+mesh = SubResource("BoxMesh_iwpo4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.372376, 0.422737, 0.00264323)
+mesh = SubResource("CylinderMesh_iwpo4")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.372161, 0.422737, 0.00264323)
+mesh = SubResource("CylinderMesh_iwpo4")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.587435, 0, 0, 0, 0.228062, 0, 0, 0, 0.275564, 0, 0.446556, -0.336142)
+mesh = SubResource("BoxMesh_vd578")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fkkic")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501753, 0)
+spring_length = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/SpringArm3D"]
